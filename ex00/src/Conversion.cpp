@@ -6,7 +6,7 @@
 /*   By: dpalmer <dpalmer@student.hive.fi>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/31 10:13:48 by dpalmer           #+#    #+#             */
-/*   Updated: 2023/10/31 10:19:33 by dpalmer          ###   ########.fr       */
+/*   Updated: 2023/10/31 10:55:55 by dpalmer          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,14 +40,14 @@ Conversion::~Conversion()
 Conversion &Conversion::operator=(const Conversion &src)
 {
 	// std::cout << "Conversion Copy Assignment operator called" << std::endl;
-	if (this == &src)
-		return *this;
-
-	this->_type = src.getType();
-	this->_char = src.getChar();
-	this->_int = src.getInt();
-	this->_float = src.getFloat();
-	this->_double = src.getDouble();
+	if (this != &src)
+	{
+		this->_type = src.getType();
+		this->_char = src.getChar();
+		this->_int = src.getInt();
+		this->_float = src.getFloat();
+		this->_double = src.getDouble();
+	}
 	return *this;
 }
 
