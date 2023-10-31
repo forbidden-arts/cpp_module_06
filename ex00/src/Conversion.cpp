@@ -6,7 +6,7 @@
 /*   By: dpalmer <dpalmer@student.hive.fi>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/31 10:13:48 by dpalmer           #+#    #+#             */
-/*   Updated: 2023/10/31 10:55:55 by dpalmer          ###   ########.fr       */
+/*   Updated: 2023/10/31 12:26:32 by dpalmer          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,7 +51,6 @@ Conversion &Conversion::operator=(const Conversion &src)
 	return *this;
 }
 
-
 int	Conversion::checkInput()
 {
 	if (this->getInput().compare("nan") == 0 || this->getInput().compare("+inf") == 0 ||
@@ -61,8 +60,8 @@ int	Conversion::checkInput()
 		return (NAN_INF);
 	}
 	else if (this->getInput().length() == 1 &&
-		(this->getInput()[0] == '+' || this->getInput()[0] == '-' || // prevents that the input of single digit integers get interpreted as a char
-		this->getInput()[0] == 'f' || this->getInput()[0] == '.'))
+		std::isprint(this->getInput()[0]) &&
+		!std::isdigit(this->getInput()[0]))
 	{
 		return (CHAR);
 	}
@@ -72,31 +71,21 @@ int	Conversion::checkInput()
 		return (INT);
 	else if (this->getInput().find_first_not_of("+-0123456789.") == std::string::npos)
 	{
-		if (this->getInput().find_first_of(".") != this->getInput().find_last_of(".") || // catches `0..0`
-			isdigit(this->getInput()[this->getInput().find_first_of(".") + 1]) == false || // catches `0.`
-			this->getInput().find_first_of(".") == 0) // catches `.0`
+		if (this->getInput().find_first_of(".") != this->getInput().find_last_of(".")) // catches 0..0
 			return (ERROR);
 		else
 			return (DOUBLE);
 	}
 	else if (this->getInput().find_first_not_of("+-0123456789.f") == std::string::npos)
 	{
-		if (this->getInput().find_first_of("f") != this->getInput().find_last_of("f") || // catches `0.0ff`
-			this->getInput().find_first_of(".") != this->getInput().find_last_of(".") || // catches `0..0f`
-			this->getInput().find_first_of("f") - this->getInput().find_first_of(".") == 1 || //catches `0.f`
-			this->getInput().find_first_of(".") == 0 || // catches `.0f`
+		if (this->getInput().find_first_of("f") != this->getInput().find_last_of("f") || // catches 0.0ff
+			this->getInput().find_first_of(".") != this->getInput().find_last_of(".") || // catches 0..0f
 			this->getInput()[this->getInput().find_first_of("f") + 1] != '\0') // catches `0.0f0`
 			return (ERROR);
 		else
 			return (FLOAT);
 	}
-	else if ((this->getInput().length() == 1 && std::isprint(this->getInput()[0])) ||
-		(this->getInput().length() == 1 && std::isalpha(this->getInput()[0])))
-	{
-		return (CHAR);
-	}
-	else
-		return (ERROR);
+	return (ERROR);
 }
 
 void Conversion::fromChar(void)
