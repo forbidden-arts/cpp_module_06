@@ -6,7 +6,7 @@
 /*   By: dpalmer <dpalmer@student.hive.fi>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/02 10:42:41 by dpalmer           #+#    #+#             */
-/*   Updated: 2023/11/02 10:54:49 by dpalmer          ###   ########.fr       */
+/*   Updated: 2023/11/09 12:32:44 by dpalmer          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,13 +25,10 @@ static Base *generate(void)
 	{
 	case 0:
 		return (new A());
-		break;
 	case 1:
 		return (new B());
-		break;
 	case 2:
 		return (new C());
-		break;
 	default:
 		return (NULL);
 	}
