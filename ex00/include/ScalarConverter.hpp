@@ -1,28 +1,36 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.cpp                                           :+:      :+:    :+:   */
+/*   ScalarConverter.hpp                                :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: dpalmer <dpalmer@student.hive.fi>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/10/31 10:57:30 by dpalmer           #+#    #+#             */
-/*   Updated: 2023/11/16 10:14:31 by dpalmer          ###   ########.fr       */
+/*   Created: 2023/10/31 10:11:35 by dpalmer           #+#    #+#             */
+/*   Updated: 2023/11/16 10:15:12 by dpalmer          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "ScalarConverter.hpp"
+#ifndef SCALARCONVERTER_HPP
+#define SCALARCONVERTER_HPP
 
+#include <string>
 #include <iostream>
+#include <limits>
+#include <climits>
+#include <cstdlib>
+#include <cstring>
+#include <cctype>
 
-int main(int argc, char *argv[])
+
+class ScalarConverter
 {
-	if (argc == 1)
-	{
-		std::cout << "Error: no parameters\n" << "Usage: <program> <literal>" << std::endl;
-		return 1;
-	}
+	private:
+		ScalarConverter();
+		ScalarConverter(const ScalarConverter& src);
+		ScalarConverter &operator=(const ScalarConverter &src);
 
-	ScalarConverter::convert(argv[1]);
-
-	return 0;
-}
+	public:
+		static void convert(const std::string& literal);
+		~ScalarConverter();
+};
+#endif

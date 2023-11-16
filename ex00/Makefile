@@ -19,7 +19,7 @@ UP			=	\033[A
 CUT			=	\033[K
 
 #source files
-SRC_FILES	=	Conversion	\
+SRC_FILES	=	ScalarConverter	\
 				main
 
 #paths
