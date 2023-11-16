@@ -6,7 +6,7 @@
 /*   By: dpalmer <dpalmer@student.hive.fi>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/02 10:13:41 by dpalmer           #+#    #+#             */
-/*   Updated: 2023/11/02 10:23:04 by dpalmer          ###   ########.fr       */
+/*   Updated: 2023/11/16 11:39:53 by dpalmer          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,8 +35,8 @@ class Serializer
 		Serializer &operator=(const Serializer &src);
 		~Serializer();
 
-		uintptr_t serialize(Data *ptr);
-		Data *unserialize(uintptr_t raw);
+		static uintptr_t serialize(Data *ptr);
+		static Data *unserialize(uintptr_t raw);
 };
 
 #endif

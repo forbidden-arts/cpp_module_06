@@ -6,7 +6,7 @@
 /*   By: dpalmer <dpalmer@student.hive.fi>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/31 10:13:48 by dpalmer           #+#    #+#             */
-/*   Updated: 2023/11/16 10:14:09 by dpalmer          ###   ########.fr       */
+/*   Updated: 2023/11/16 11:42:11 by dpalmer          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,7 @@ ScalarConverter::ScalarConverter(const ScalarConverter& src)
 
 ScalarConverter& ScalarConverter::operator=(const ScalarConverter& src)
 {
-	(void)src;
+	static_cast<void>(src);
 	return *this;
 }
 
